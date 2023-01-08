@@ -1,6 +1,5 @@
 import GameBoardFactory from "../mechanics/gameboard/gameboard";
 import playGame from "./playGame";
-import loadBoards from "./loadBoards";
 
 const gridsContainer = document.getElementById('gridsContainer');
 gridsContainer.classList.add("gridsContainer");
@@ -88,16 +87,13 @@ function setUpComputerGrid() {
 	]);
 }
 function updateUIGrid(gridType) {
-    //const result = grids[gridType].map(() => {  
         let arrayLength = (playerGameboard.shipArrayBoard).length - 1;
         let cellArr = (playerGameboard.shipArrayBoard[arrayLength].coordinates);
         for (let i = 0; i < cellArr.length; ++i) {
             const cell = document.getElementById(cellArr[i]);
                 cell.classList.remove("hoverEffect");
                 cell.classList.add("shipPlaced");
-        }
-    //});
-    //grids[gridType] = result;    
+        } 
 }
 function setShips(shipName, shipAvailibility) {
     shipsList[shipName][1] = shipAvailibility;
@@ -112,22 +108,18 @@ function nextShipToUse() {
 
         if (name === 'ship1' && shipAvailability) {
             setShips(name, 0);
-            //setShipName('battleship');
             return shipLength;
         }
         if (name === 'ship2' && shipAvailability) {
             setShips(name, 0);
-            //setShipName('cruiser');
             return shipLength;
         }
         if (name === 'ship3' && shipAvailability) {
             setShips(name, 0);
-            //setShipName('submarine');
             return shipLength;
         }
         if (name === 'ship4' && shipAvailability) {
             setShips(name, 0);
-            //setShipName('destroyer');
             return shipLength;
         }
         if (name === 'ship5' && shipAvailability) {

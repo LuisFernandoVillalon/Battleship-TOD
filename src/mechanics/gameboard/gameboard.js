@@ -3,6 +3,7 @@ import ShipFactory from '../ship';
 const GameBoardFactory = function () {
 	const shipArrayBoard = [];
 	const missedShots = [];
+	//creates a ship and places accordingly on the board. 
 	function placeShip(coordinates) {
 		const shipObj = ShipFactory(coordinates);
 		shipArrayBoard.push(shipObj);
@@ -15,16 +16,14 @@ const GameBoardFactory = function () {
 			const shipCoords = ship.coordinates;
 
 			return shipCoords.map((shipCoord, index) => {		
-					//for (let i = 0; i < shipCoord.length; ++i) {
-						if (shipCoord === hitCoords && ship.shipArray[index] === 'hit') {
-							// Cannot hit the same coordinate
-							return repeatedMovedFlag = 1;
-						} else if (shipCoord === hitCoords) {
-							// We got a hit!
-							ship.hit(hitCoords);
-							return hitFlag = 1;
-						}
-					//}
+				if (shipCoord === hitCoords && ship.shipArray[index] === 'hit') {
+					// Cannot hit the same coordinate
+					return repeatedMovedFlag = 1;
+				} else if (shipCoord === hitCoords) {
+					// We got a hit!
+					ship.hit(hitCoords);
+					return hitFlag = 1;
+				}
 			});
 		});
 
@@ -48,30 +47,13 @@ const GameBoardFactory = function () {
 	function calculateShipPlacement(shipLength, shipCoordinate, rotateFlag) {
 		const coord1 = shipCoordinate;
 		const placementCoordinates = [];
-		let coord = [];
-		let coordChange;
 		let coordSame;
 
-		// if (rotateFlag) {
-		// 	coordSame = coord2;
-		// 	coordChange = coord1;
-		// } else {
-			coordSame = coord1;
-			coordSame = Number(coordSame);
-		// 	coordChange = coord2;
-		// }
+		coordSame = coord1;
+		coordSame = Number(coordSame);
 
 		for (let i = 0; i < shipLength; i++) {
-			// if (rotateFlag) {
-			// 	coord.push(coordChange);
-			//	coord.push(coordSame);
-			// } else {
-			// 	coord.push(coordSame);
-			// 	coord.push(coordChange);
-			// }
-
 			placementCoordinates.push(coordSame);
-			//coord = [];
 			coordSame += 1;
 		}
 
@@ -83,8 +65,6 @@ const GameBoardFactory = function () {
 
 			for (let j = 0; j < shipCoordinates.length; j++) {
 				const coord1Check = shipCoordinates[j];
-				//const coord2Check = shipCoordinates[j][1];
-				//&& coord2Check === coord2
 				if (coord1Check == coord1) {
 					return true;
 				}
@@ -103,12 +83,7 @@ const GameBoardFactory = function () {
 				tempCoord1 = tempCoord1 - 7;
 			}
 		}
-		// if (rotateFlag) {
-		 	spaceShipWillTakeOnGrid = Number(tempCoord1) + Number(shipLength);
-		// } else {
-		// 	spaceShipWillTakeOnGrid = coord2 + shipLength;
-		// }
-
+		spaceShipWillTakeOnGrid = Number(tempCoord1) + Number(shipLength);
 		const canShipBePlacedThere = checkShipSetUpPlacement(coord1, rotateFlag);
 			if (spaceShipWillTakeOnGrid <= 7 && !canShipBePlacedThere) {
 				return true;

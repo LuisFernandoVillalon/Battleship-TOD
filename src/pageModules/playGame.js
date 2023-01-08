@@ -93,7 +93,6 @@ function checkWinner(computerGameboard, playerGameboard) {
 }
 function computerMove(playerGameboard) {
     let computerDecision = Number(Math.floor(Math.random() * 48));
-    console.log(computerDecision)
     computerPlayer.sendAttack(playerGameboard, computerDecision);
     updateGrid(playerGameboard, 'playerGrid', computerDecision);
 	updateUIGrid('playerGrid');
